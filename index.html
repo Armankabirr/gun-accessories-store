@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gun Accessories Store</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="nav">
+		<div class="nav__inner">
+			<div class="nav__logo" aria-label="Gun Accessories Store logo">
+				<span class="nav__logo-mark" aria-hidden="true">
+					<span class="nav__logo-target"></span>
+				</span>
+				<span class="nav__logo-text">Gun Accessories Store</span>
+			</div>
+
+			<form class="nav__search" role="search" aria-label="Search products">
+				<svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+				</svg>
+				<input type="search" name="q" placeholder="Search products..." aria-label="Search products">
+			</form>
+
+			<div class="nav__actions">
+				<button class="nav__action" type="button" aria-label="View wishlist">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				<button class="nav__action" type="button" aria-label="View cart">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M4 5h2l1 12h10l1-9H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<circle cx="9" cy="20" r="1.4" fill="currentColor"/>
+						<circle cx="17" cy="20" r="1.4" fill="currentColor"/>
+					</svg>
+				</button>
+				<button class="nav__cta" type="button">Sign In</button>
+			</div>
+		</div>
+	</header>
+
+	<script src="js/script.js"></script>
+</body>
+</html>

@@ -180,13 +180,14 @@ button {
 .hero {
 	position: relative;
 	height: 78vh;
-	min-height: 520px;
+	min-height: 550px;
 	max-height: 820px;
 	background: radial-gradient(circle at 18% 20%, rgba(255, 122, 0, 0.16), transparent 32%),
 				linear-gradient(120deg, rgba(10, 12, 18, 0.9), rgba(10, 12, 18, 0.75)),
 				url('../images/hero-image.webp') center/cover no-repeat;
 	border-bottom: 1px solid var(--border);
 	overflow: hidden;
+	margin-bottom: 50px;
 }
 
 .hero__overlay {
@@ -200,7 +201,7 @@ button {
 	position: relative;
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 120px 20px 140px;
+	padding: 80px 20px 140px;
 }
 
 .badge {

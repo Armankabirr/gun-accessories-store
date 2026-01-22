@@ -184,7 +184,7 @@ button {
 	max-height: 820px;
 	background: radial-gradient(circle at 18% 20%, rgba(255, 122, 0, 0.16), transparent 32%),
 				linear-gradient(120deg, rgba(10, 12, 18, 0.9), rgba(10, 12, 18, 0.75)),
-				url('https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+				url('../images/hero-image.webp') center/cover no-repeat;
 	border-bottom: 1px solid var(--border);
 	overflow: hidden;
 }

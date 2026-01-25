@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>All Products - Gun Accessories Store</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="nav">
+		<div class="nav__inner">
+			<a href="index.html" class="nav__logo" aria-label="Gun Accessories Store logo">
+				<span class="nav__logo-mark" aria-hidden="true">
+					<span class="nav__logo-target"></span>
+				</span>
+				<span class="nav__logo-text">Gun Accessories Store</span>
+			</a>
+
+			<form class="nav__search" role="search" aria-label="Search products">
+				<svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+				</svg>
+				<input type="search" name="q" placeholder="Search products..." aria-label="Search products">
+			</form>
+
+			<div class="nav__actions">
+				<button class="nav__action" type="button" aria-label="View wishlist">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				<button class="nav__action" type="button" aria-label="View cart">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M4 5h2l1 12h10l1-9H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<circle cx="9" cy="20" r="1.4" fill="currentColor"/>
+						<circle cx="17" cy="20" r="1.4" fill="currentColor"/>
+					</svg>
+				</button>
+				<button class="nav__cta" type="button">Sign In</button>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<section class="products-page">
+			<div class="container">
+				<div class="products-page__header">
+					<h1 class="products-page__title">All Products</h1>
+					<p class="products-page__count"><span id="product-count">12</span> products found</p>
+				</div>
+
+				<div class="products-page__layout">
+					<!-- Sidebar Filters -->
+					<aside class="filters-sidebar">
+						<div class="filters-header">
+							<h3 class="filters-title">
+								<svg class="filters-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M4 4h16v2H4zM6 9h12v2H6zM8 14h8v2H8z"/>
+								</svg>
+								Filters
+							</h3>
+						</div>
+
+						<!-- Category Filter -->
+						<div class="filter-group">
+							<h4 class="filter-group__title">CATEGORY</h4>
+							<div class="filter-options">
+								<label class="filter-option">
+									<input type="radio" name="category" value="all" checked>
+									<span class="filter-option__label">All</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="category" value="holsters">
+									<span class="filter-option__label">Holsters</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="category" value="scopes">
+									<span class="filter-option__label">Scopes</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="category" value="cleaning-kits">
+									<span class="filter-option__label">Cleaning Kits</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="category" value="targets">
+									<span class="filter-option__label">Targets</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="category" value="safety-gear">
+									<span class="filter-option__label">Safety Gear</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Price Range Filter -->
+						<div class="filter-group">
+							<h4 class="filter-group__title">PRICE RANGE</h4>
+							<div class="price-range">
+								<input type="range" id="price-min" name="price-min" min="0" max="600" value="600" class="price-slider">
+								<div class="price-display">
+									<span class="price-min">$0</span>
+									<span class="price-value">$<span id="price-display">600</span></span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Rating Filter -->
+						<div class="filter-group">
+							<h4 class="filter-group__title">MINIMUM RATING</h4>
+							<div class="filter-options">
+								<label class="filter-option">
+									<input type="radio" name="rating" value="all" checked>
+									<span class="filter-option__label">All Ratings</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="rating" value="4plus">
+									<span class="filter-option__label">4+ Stars</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="rating" value="45plus">
+									<span class="filter-option__label">4.5+ Stars</span>
+								</label>
+								<label class="filter-option">
+									<input type="radio" name="rating" value="48plus">
+									<span class="filter-option__label">4.8+ Stars</span>
+								</label>
+							</div>
+						</div>
+
+						<button class="reset-filters" id="reset-filters">Reset All Filters</button>
+					</aside>
+
+					<!-- Products Grid -->
+					<section class="products-grid">
+						<article class="product-card">
+							<span class="product-badge product-badge--sale">On Sale</span>
+							<img src="images/Tactical IWB Holster.jfif" alt="Tactical IWB Holster" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">HOLSTERS</span>
+								<h3 class="product-card__title">Tactical IWB Holster</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(434 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$49.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<span class="product-badge product-badge--new">New</span>
+							<img src="images/Red Dot Reflex Sight.jfif" alt="Red Dot Reflex Sight" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">SCOPES</span>
+								<h3 class="product-card__title">Red Dot Reflex Sight</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★★</span>
+									<span class="product-card__reviews">(567 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$189.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<span class="product-badge product-badge--new">New</span>
+							<img src="images/Universal Cleaning Kit Pro.jfif" alt="Universal Cleaning Kit Pro" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">CLEANING KITS</span>
+								<h3 class="product-card__title">Universal Cleaning Kit Pro</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★★</span>
+									<span class="product-card__reviews">(792 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$39.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<img src="images/Target.jpg" alt="Paper Target Pack - 100pcs" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">TARGETS</span>
+								<h3 class="product-card__title">Paper Target Pack - 100pcs</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(331 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$24.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<img src="images/Tactical Ear Protection.jfif" alt="Tactical Ear Protection" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">SAFETY GEAR</span>
+								<h3 class="product-card__title">Tactical Ear Protection</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(778 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$79.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<span class="product-badge product-badge--sale">On Sale</span>
+							<img src="images/OWB Paddle Holster.jfif" alt="OWB Paddle Holster" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">HOLSTERS</span>
+								<h3 class="product-card__title">OWB Paddle Holster</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★★</span>
+									<span class="product-card__reviews">(456 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$59.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<img src="images/Scope.jpg" alt="Variable Magnification Scope 3-9x40" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">SCOPES</span>
+								<h3 class="product-card__title">Variable Magnification Scope 3-9x40</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(352 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$249.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<img src="images/Cleaning.jpg" alt="Bore Snake Cleaner" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">CLEANING KITS</span>
+								<h3 class="product-card__title">Bore Snake Cleaner</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(1234 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$14.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<span class="product-badge product-badge--out">OUT OF STOCK</span>
+							<img src="images/Target2.jpg" alt="Steel Target Gong Set" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">TARGETS</span>
+								<h3 class="product-card__title">Steel Target Gong Set</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(617 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$149.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<img src="images/SafetyGear.jpg" alt="Ballistic Safety Glasses" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">SAFETY GEAR</span>
+								<h3 class="product-card__title">Ballistic Safety Glasses</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★★</span>
+									<span class="product-card__reviews">(567 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$34.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<span class="product-badge product-badge--instock">In Stock</span>
+							<img src="images/Holster.jpg" alt="Chest Holster Rig" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">HOLSTERS</span>
+								<h3 class="product-card__title">Chest Holster Rig</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(458 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$89.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+
+						<article class="product-card">
+							<img src="images/NightScope.jpg" alt="Night Vision Scope" class="product-card__image">
+							<div class="product-card__content">
+								<span class="product-card__category">SCOPES</span>
+								<h3 class="product-card__title">Night Vision Scope</h3>
+								<div class="product-card__rating">
+									<span class="stars">★★★★☆</span>
+									<span class="product-card__reviews">(156 reviews)</span>
+								</div>
+								<div class="product-card__footer">
+									<span class="product-card__price">$599.99</span>
+									<button class="btn-add" type="button">Add</button>
+								</div>
+							</div>
+						</article>
+					</section>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="footer__grid">
+				<div class="footer__brand">
+					<div class="nav__logo">
+						<span class="nav__logo-mark">
+							<span class="nav__logo-target"></span>
+						</span>
+						<span class="nav__logo-text">Gun Accessories Store</span>
+					</div>
+					<p class="footer__tagline">Your trusted source for premium tactical accessories and gear. Quality you can depend on.</p>
+				</div>
+				<div class="footer__section">
+					<h4 class="footer__heading">Shop</h4>
+					<ul class="footer__links">
+						<li><a href="products.html">All Products</a></li>
+						<li><a href="#">New Arrivals</a></li>
+						<li><a href="#">Best Sellers</a></li>
+						<li><a href="#">Sale</a></li>
+					</ul>
+				</div>
+				<div class="footer__section">
+					<h4 class="footer__heading">Support</h4>
+					<ul class="footer__links">
+						<li><a href="#">Contact Us</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li><a href="#">Shipping Info</a></li>
+						<li><a href="#">Returns</a></li>
+					</ul>
+				</div>
+				<div class="footer__section">
+					<h4 class="footer__heading">Legal</h4>
+					<ul class="footer__links">
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Compliance</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer__bottom">
+				<p>© 2026 Gun Accessories Store. All rights reserved.</p>
+				<div class="footer__badges">
+					<span>🔒 Secure Checkout</span>
+					<span>✓ Systems Operational</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="js/products.js"></script>
+</body>
+</html>

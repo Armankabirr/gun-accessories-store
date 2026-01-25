@@ -176,9 +176,9 @@ function highlightMatchingProducts(filtered) {
 		const product = products.find(p => p.title === title);
 		
 		if (product && filteredIds.includes(product.id)) {
-			card.style.display = '';
+			card.classList.remove('hidden');
 		} else {
-			card.style.display = 'none';
+			card.classList.add('hidden');
 		}
 	});
 }

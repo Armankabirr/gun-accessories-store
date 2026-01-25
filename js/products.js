@@ -177,11 +177,8 @@ function highlightMatchingProducts(filtered) {
 		
 		if (product && filteredIds.includes(product.id)) {
 			card.style.display = '';
-			card.style.opacity = '1';
-			card.style.pointerEvents = 'auto';
 		} else {
-			card.style.opacity = '0.3';
-			card.style.pointerEvents = 'none';
+			card.style.display = 'none';
 		}
 	});
 }

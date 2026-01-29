@@ -203,8 +203,24 @@ function resetFilters() {
 	filterProducts();
 }
 
+function applyCategoryFromUrl() {
+	const params = new URLSearchParams(window.location.search);
+	const category = params.get('category');
+
+	if (!category) {
+		return;
+	}
+
+	const matchingRadio = document.querySelector(`input[name="category"][value="${category}"]`);
+	if (matchingRadio) {
+		matchingRadio.checked = true;
+		currentFilters.category = category;
+	}
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+	applyCategoryFromUrl();
 	filterProducts();
 });
 

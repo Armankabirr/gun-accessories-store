@@ -23,3 +23,27 @@ if (preloader) {
 		}, 400);
 	});
 }
+
+const scrollTopButton = document.querySelector('.scroll-top');
+
+if (scrollTopButton) {
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	const toggleScrollTopButton = () => {
+		if (window.scrollY > 400) {
+			scrollTopButton.classList.add('scroll-top--visible');
+		} else {
+			scrollTopButton.classList.remove('scroll-top--visible');
+		}
+	};
+
+	window.addEventListener('scroll', toggleScrollTopButton, { passive: true });
+	window.addEventListener('load', toggleScrollTopButton);
+
+	scrollTopButton.addEventListener('click', () => {
+		window.scrollTo({
+			top: 0,
+			behavior: prefersReducedMotion ? 'auto' : 'smooth'
+		});
+	});
+}

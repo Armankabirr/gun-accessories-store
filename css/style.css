@@ -92,6 +92,51 @@ body {
 	visibility: hidden;
 }
 
+.scroll-top {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	width: 46px;
+	height: 46px;
+	border-radius: 14px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: rgba(21, 128, 61, 0.18);
+	color: #eafff3;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+	z-index: 20;
+}
+
+.scroll-top svg {
+	width: 20px;
+	height: 20px;
+}
+
+.scroll-top--visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.scroll-top:hover {
+	transform: translateY(-2px);
+	background: rgba(21, 128, 61, 0.28);
+}
+
+@media (max-width: 600px) {
+	.scroll-top {
+		right: 16px;
+		bottom: 16px;
+	}
+}
+
 @keyframes preloader-slide {
 	0%,
 	100% {

@@ -23,6 +23,97 @@ body {
 	font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
 }
 
+.preloader {
+	position: fixed;
+	inset: 0;
+	background: radial-gradient(circle at 20% 20%, rgba(21, 128, 61, 0.12), transparent 35%),
+		linear-gradient(140deg, rgba(7, 10, 16, 0.98), rgba(13, 17, 24, 0.98));
+	z-index: 9999;
+	display: grid;
+	place-items: center;
+	transition: opacity 320ms ease, visibility 320ms ease;
+}
+
+.preloader__panel {
+	background: rgba(15, 19, 28, 0.92);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+	border-radius: 20px;
+	padding: 28px 34px;
+	text-align: center;
+	min-width: 240px;
+}
+
+.preloader__gun {
+	width: 140px;
+	margin: 0 auto 12px;
+	animation: preloader-slide 1.4s ease-in-out infinite;
+}
+
+.preloader__gun svg {
+	width: 100%;
+	height: auto;
+	fill: #d1fae5;
+	filter: drop-shadow(0 10px 18px rgba(21, 128, 61, 0.35));
+}
+
+.preloader__text {
+	font-weight: 600;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+	font-size: 12px;
+	color: #a7f3d0;
+	margin-bottom: 10px;
+}
+
+.preloader__dots {
+	display: inline-flex;
+	gap: 6px;
+}
+
+.preloader__dots span {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.4);
+	animation: preloader-pulse 900ms ease-in-out infinite;
+}
+
+.preloader__dots span:nth-child(2) {
+	animation-delay: 150ms;
+}
+
+.preloader__dots span:nth-child(3) {
+	animation-delay: 300ms;
+}
+
+.preloader--hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+@keyframes preloader-slide {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(10px);
+	}
+}
+
+@keyframes preloader-pulse {
+	0%,
+	100% {
+		transform: scale(0.85);
+		opacity: 0.5;
+	}
+	50% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+}
+
 main {
 	display: block;
 }

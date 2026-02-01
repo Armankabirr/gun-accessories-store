@@ -12,3 +12,14 @@ productCards.forEach(card => {
 		}
 	});
 });
+
+const preloader = document.querySelector('.preloader');
+
+if (preloader) {
+	window.addEventListener('load', () => {
+		preloader.classList.add('preloader--hidden');
+		setTimeout(() => {
+			preloader.remove();
+		}, 400);
+	});
+}

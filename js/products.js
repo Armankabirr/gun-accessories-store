@@ -222,24 +222,105 @@ function applyCategoryFromUrl() {
 document.addEventListener('DOMContentLoaded', () => {
 	applyCategoryFromUrl();
 	filterProducts();
+	initializeAddToCart();
 });
 
-// Add to cart functionality
-const addButtons = document.querySelectorAll('.btn-add');
-addButtons.forEach(button => {
-	button.addEventListener('click', (e) => {
-		const card = e.target.closest('.product-card');
-		const productTitle = card.querySelector('.product-card__title').textContent;
-		const productPrice = card.querySelector('.product-card__price').textContent;
-		
-		// Visual feedback
-		const originalText = button.textContent;
-		button.textContent = '✓ Added';
-		button.style.backgroundColor = '#00c853';
-		
+// Cart management functions
+function loadCart() {
+	const saved = localStorage.getItem('cart');
+	return saved ? JSON.parse(saved) : [];
+}
+
+function saveCart(cart) {
+	localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function addToCart(product) {
+	let cart = loadCart();
+	const existingItem = cart.find(item => item.id === product.id);
+	
+	if (existingItem) {
+		existingItem.quantity += 1;
+	} else {
+		cart.push({
+			...product,
+			quantity: 1
+		});
+	}
+	
+	saveCart(cart);
+	updateCartBadge();
+	showNotification(`${product.title} added to cart!`);
+}
+
+function updateCartBadge() {
+	const cart = loadCart();
+	const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+	const badge = document.getElementById('cart-badge');
+	if (badge) {
+		badge.textContent = totalItems;
+		badge.style.display = totalItems > 0 ? 'flex' : 'none';
+	}
+}
+
+function showNotification(message) {
+	// Remove existing notification if any
+	const existing = document.querySelector('.cart-notification');
+	if (existing) {
+		existing.remove();
+	}
+	
+	// Create notification
+	const notification = document.createElement('div');
+	notification.className = 'cart-notification';
+	notification.innerHTML = `
+		<svg viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+		<span>${message}</span>
+	`;
+	
+	document.body.appendChild(notification);
+	
+	// Trigger animation
+	setTimeout(() => {
+		notification.classList.add('cart-notification--show');
+	}, 10);
+	
+	// Remove after 3 seconds
+	setTimeout(() => {
+		notification.classList.remove('cart-notification--show');
 		setTimeout(() => {
-			button.textContent = originalText;
-			button.style.backgroundColor = '';
-		}, 2000);
+			notification.remove();
+		}, 300);
+	}, 3000);
+}
+
+function initializeAddToCart() {
+	const addButtons = document.querySelectorAll('.btn-add');
+	addButtons.forEach(button => {
+		button.addEventListener('click', (e) => {
+			const card = e.target.closest('.product-card');
+			const productTitle = card.querySelector('.product-card__title').textContent;
+			const priceText = card.querySelector('.product-card__price').textContent;
+			const price = parseFloat(priceText.replace('$', ''));
+			
+			// Find the product from the products array
+			const product = products.find(p => p.title === productTitle);
+			
+			if (product) {
+				addToCart(product);
+				
+				// Visual feedback on button
+				const originalText = button.textContent;
+				button.textContent = '✓ Added';
+				button.style.backgroundColor = '#10b981';
+				
+				setTimeout(() => {
+					button.textContent = originalText;
+					button.style.backgroundColor = '';
+				}, 1500);
+			}
+		});
 	});
-});
+}

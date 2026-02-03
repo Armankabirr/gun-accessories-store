@@ -206,32 +206,3 @@ class ShoppingCart {
 
 // Initialize cart
 const cart = new ShoppingCart();
-
-// For demo purposes, add some initial items if cart is empty
-if (cart.items.length === 0) {
-	// Add demo items
-	const demoProducts = [
-		{
-			id: 1,
-			title: 'Tactical IWB Holster',
-			category: 'holsters',
-			price: 49.99
-		},
-		{
-			id: 5,
-			title: 'Tactical Ear Protection',
-			category: 'safety-gear',
-			price: 79.99
-		},
-		{
-			id: 10,
-			title: 'Chest Holster Rig',
-			category: 'holsters',
-			price: 89.99
-		}
-	];
-
-	demoProducts.forEach(product => {
-		cart.addItem(product, 1);
-	});
-}

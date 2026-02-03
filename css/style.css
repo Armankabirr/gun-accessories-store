@@ -23,6 +23,47 @@ body {
 	font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
 }
 
+/* Cart Notification */
+.cart-notification {
+	position: fixed;
+	top: 90px;
+	right: 20px;
+	background: linear-gradient(135deg, #10b981, #059669);
+	color: white;
+	padding: 16px 24px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+	z-index: 10000;
+	font-weight: 500;
+	font-size: 15px;
+	transform: translateX(400px);
+	opacity: 0;
+	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cart-notification--show {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.cart-notification svg {
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+	.cart-notification {
+		right: 10px;
+		left: 10px;
+		top: 80px;
+	}
+}
+
+
 .preloader {
 	position: fixed;
 	inset: 0;

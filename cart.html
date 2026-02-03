@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shopping Cart - Gun Accessories Store</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="nav">
+		<div class="nav__inner">
+			<a href="index.html" class="nav__logo" aria-label="Gun Accessories Store logo">
+				<span class="nav__logo-mark" aria-hidden="true">
+					<span class="nav__logo-target"></span>
+				</span>
+				<span class="nav__logo-text">Gun Accessories Store</span>
+			</a>
+
+			<form class="nav__search" role="search" aria-label="Search products">
+				<svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+				</svg>
+				<input type="search" name="q" placeholder="tactical" aria-label="Search products">
+			</form>
+
+			<div class="nav__actions">
+				<a href="cart.html" class="nav__action nav__action--cart" type="button" aria-label="View cart">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M2 2h3l.4 2M7 13h10l4-8H5.4M7 13 5.4 4M7 13l-2 5m2-5h10m0 0 2 5m-2-5v5m-10 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm10 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					<span class="nav__action-badge" id="cart-badge">0</span>
+				</a>
+				<button class="nav__action" type="button" aria-label="Account">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</header>
+
+	<main class="cart-page">
+		<!-- Empty Cart State -->
+		<div class="cart-empty" id="empty-cart">
+			<div class="cart-empty__content">
+				<svg class="cart-empty__icon" viewBox="0 0 120 120" aria-hidden="true">
+					<rect x="20" y="20" width="80" height="80" rx="12" fill="none" stroke="currentColor" stroke-width="4"/>
+					<path d="M40 50c0-5 4-10 10-10s10 5 10 10M60 50c0-5 4-10 10-10s10 5 10 10" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+					<circle cx="60" cy="72" r="8" fill="currentColor"/>
+				</svg>
+				<h1 class="cart-empty__title">Your Cart is Empty</h1>
+				<p class="cart-empty__message">Looks like you haven't added anything to your cart yet.</p>
+				<a href="products.html" class="cart-empty__button">Start Shopping</a>
+			</div>
+		</div>
+
+		<!-- Cart with Items -->
+		<div class="cart-content" id="cart-content" style="display: none;">
+			<div class="cart-container">
+				<div class="cart-main">
+					<div class="cart-header">
+						<h1 class="cart-title">Shopping Cart</h1>
+						<p class="cart-subtitle"><span id="cart-count">0</span> items in your cart</p>
+					</div>
+
+					<div class="cart-items" id="cart-items">
+						<!-- Cart items will be dynamically inserted here -->
+					</div>
+				</div>
+
+				<aside class="cart-sidebar">
+					<div class="order-summary">
+						<h2 class="order-summary__title">Order Summary</h2>
+						
+						<div class="order-summary__row">
+							<span class="order-summary__label">Subtotal</span>
+							<span class="order-summary__value" id="subtotal">$0.00</span>
+						</div>
+
+						<div class="order-summary__row">
+							<span class="order-summary__label">Shipping</span>
+							<span class="order-summary__value order-summary__value--free" id="shipping">FREE</span>
+						</div>
+
+						<div class="order-summary__row">
+							<span class="order-summary__label">Tax (8%)</span>
+							<span class="order-summary__value" id="tax">$0.00</span>
+						</div>
+
+						<div class="order-summary__divider"></div>
+
+						<div class="order-summary__row order-summary__row--total">
+							<span class="order-summary__label">Total</span>
+							<span class="order-summary__value order-summary__value--total" id="total">$0.00</span>
+						</div>
+
+						<button class="order-summary__checkout">
+							Proceed to Checkout
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12h14m-7-7 7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</button>
+
+						<a href="products.html" class="order-summary__continue">Continue Shopping</a>
+
+						<div class="order-summary__features">
+							<div class="order-summary__feature">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								<span>Secure Checkout</span>
+							</div>
+							<div class="order-summary__feature">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								<span>Free Returns within 30 days</span>
+							</div>
+							<div class="order-summary__feature">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								<span>Price Match Guarantee</span>
+							</div>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</main>
+
+	<script src="js/cart.js"></script>
+</body>
+</html>

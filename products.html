@@ -50,13 +50,14 @@
 						<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 					</svg>
 				</button>
-				<button class="nav__action" type="button" aria-label="View cart">
+				<a href="cart.html" class="nav__action nav__action--cart" aria-label="View cart">
 					<svg viewBox="0 0 24 24" aria-hidden="true">
 						<path d="M4 5h2l1 12h10l1-9H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						<circle cx="9" cy="20" r="1.4" fill="currentColor"/>
 						<circle cx="17" cy="20" r="1.4" fill="currentColor"/>
 					</svg>
-				</button>
+					<span class="nav__action-badge" id="cart-badge">0</span>
+				</a>
 				<button class="nav__cta" type="button">Sign In</button>
 			</div>
 		</div>
@@ -414,5 +415,19 @@
 
 	<script src="js/script.js"></script>
 	<script src="js/products.js"></script>
+	<script>
+		// Update cart badge
+		function updateCartBadge() {
+			const cart = localStorage.getItem('cart');
+			const items = cart ? JSON.parse(cart) : [];
+			const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+			const badge = document.getElementById('cart-badge');
+			if (badge) {
+				badge.textContent = totalItems;
+				badge.style.display = totalItems > 0 ? 'flex' : 'none';
+			}
+		}
+		updateCartBadge();
+	</script>
 </body>
 </html>

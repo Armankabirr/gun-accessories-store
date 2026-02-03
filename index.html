@@ -243,19 +243,19 @@
 			<div class="container">
 				<div class="stats__grid">
 					<div class="stat">
-						<div class="stat__value">10K+</div>
+						<div class="stat__value" data-target="10000" data-suffix="K+">0</div>
 						<div class="stat__label">Happy Customers</div>
 					</div>
 					<div class="stat">
-						<div class="stat__value">500+</div>
+						<div class="stat__value" data-target="500" data-suffix="+">0</div>
 						<div class="stat__label">Products</div>
 					</div>
 					<div class="stat">
-						<div class="stat__value">24/7</div>
+						<div class="stat__value" data-target="24" data-suffix="/7">0</div>
 						<div class="stat__label">Support</div>
 					</div>
 					<div class="stat">
-						<div class="stat__value">100%</div>
+						<div class="stat__value" data-target="100" data-suffix="%">0</div>
 						<div class="stat__label">Secure</div>
 					</div>
 				</div>
@@ -434,6 +434,53 @@
 		// Initialize on page load
 		updateCartBadge();
 		initializeAddToCart();
+
+		// Counter Animation for Stats
+		function animateCounter(element, target, suffix = '', duration = 2000) {
+			const start = 0;
+			const increment = target / (duration / 16);
+			let current = start;
+
+			const timer = setInterval(() => {
+				current += increment;
+				if (current >= target) {
+					current = target;
+					clearInterval(timer);
+				}
+
+				let displayValue;
+				if (suffix === 'K+') {
+					displayValue = Math.floor(current / 1000) + suffix;
+				} else {
+					displayValue = Math.floor(current) + suffix;
+				}
+				element.textContent = displayValue;
+			}, 16);
+		}
+
+		function startCounters() {
+			const statValues = document.querySelectorAll('.stat__value[data-target]');
+			statValues.forEach(stat => {
+				const target = parseInt(stat.dataset.target);
+				const suffix = stat.dataset.suffix || '';
+				animateCounter(stat, target, suffix);
+			});
+		}
+
+		// Intersection Observer for triggering animation when stats section is visible
+		const statsSection = document.querySelector('.stats');
+		if (statsSection) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						startCounters();
+						observer.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.5 });
+
+			observer.observe(statsSection);
+		}
 	</script>
 </body>
 </html>

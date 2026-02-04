@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Secure Checkout - Gun Accessories Store</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="nav">
+		<div class="nav__inner">
+			<a href="index.html" class="nav__logo" aria-label="Gun Accessories Store logo">
+				<span class="nav__logo-mark" aria-hidden="true">
+					<span class="nav__logo-target"></span>
+				</span>
+				<span class="nav__logo-text">Gun Accessories Store</span>
+			</a>
+
+			<form class="nav__search" role="search" aria-label="Search products">
+				<svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+				</svg>
+				<input type="search" name="q" placeholder="tactical" aria-label="Search products">
+			</form>
+
+			<div class="nav__actions">
+				<a href="cart.html" class="nav__action nav__action--cart" aria-label="View cart">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M2 2h3l.4 2M7 13h10l4-8H5.4M7 13 5.4 4M7 13l-2 5m2-5h10m0 0 2 5m-2-5v5m-10 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm10 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					<span class="nav__action-badge" id="cart-badge">0</span>
+				</a>
+				<button class="nav__action" type="button" aria-label="Account">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</header>
+
+	<main class="checkout-page">
+		<div class="checkout-container">
+			<a class="checkout-back" href="cart.html">
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				Back to Cart
+			</a>
+
+			<div class="checkout-header">
+				<div>
+					<h1 class="checkout-title">Secure Checkout</h1>
+					<div class="checkout-subtitle">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M12 2 4 5v6c0 5.5 3.6 9.8 8 11 4.4-1.2 8-5.5 8-11V5l-8-3Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						SSL Encrypted
+					</div>
+				</div>
+			</div>
+
+			<div class="checkout-grid">
+				<section class="checkout-main">
+					<form class="checkout-form" id="checkout-form">
+						<div class="checkout-card">
+							<h2 class="checkout-card__title">Contact Information</h2>
+							<div class="checkout-form-grid">
+								<label class="checkout-field">
+									<span>First Name *</span>
+									<input type="text" name="firstName" required placeholder="First name">
+								</label>
+								<label class="checkout-field">
+									<span>Last Name *</span>
+									<input type="text" name="lastName" required placeholder="Last name">
+								</label>
+								<label class="checkout-field checkout-field--full">
+									<span>Email Address *</span>
+									<input type="email" name="email" required placeholder="you@email.com">
+								</label>
+								<label class="checkout-field checkout-field--full">
+									<span>Phone Number *</span>
+									<input type="tel" name="phone" required placeholder="(555) 123-4567">
+								</label>
+							</div>
+						</div>
+
+						<div class="checkout-card">
+							<h2 class="checkout-card__title">Shipping Address</h2>
+							<div class="checkout-form-grid">
+								<label class="checkout-field checkout-field--full">
+									<span>Street Address *</span>
+									<input type="text" name="street" required placeholder="Street address">
+								</label>
+								<label class="checkout-field">
+									<span>City *</span>
+									<input type="text" name="city" required placeholder="City">
+								</label>
+								<label class="checkout-field">
+									<span>State *</span>
+									<input type="text" name="state" required placeholder="State">
+								</label>
+								<label class="checkout-field checkout-field--full">
+									<span>ZIP Code *</span>
+									<input type="text" name="zip" required placeholder="ZIP code">
+								</label>
+							</div>
+						</div>
+
+						<div class="checkout-card">
+							<h2 class="checkout-card__title">Payment Information</h2>
+							<div class="checkout-payment-note">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M12 2 4 5v6c0 5.5 3.6 9.8 8 11 4.4-1.2 8-5.5 8-11V5l-8-3Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+									<path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								<span>This is a simulated payment. No actual charges will be made.</span>
+							</div>
+							<div class="checkout-form-grid">
+								<label class="checkout-field checkout-field--full">
+									<span>Card Number *</span>
+									<input type="text" name="cardNumber" required placeholder="1234 5678 9012 3456" inputmode="numeric">
+								</label>
+								<label class="checkout-field checkout-field--full">
+									<span>Cardholder Name *</span>
+									<input type="text" name="cardName" required placeholder="Name on card">
+								</label>
+								<label class="checkout-field">
+									<span>Expiry Date *</span>
+									<input type="text" name="expiry" required placeholder="MM/YY">
+								</label>
+								<label class="checkout-field">
+									<span>CVV *</span>
+									<input type="password" name="cvv" required placeholder="123" inputmode="numeric">
+								</label>
+							</div>
+						</div>
+					</form>
+				</section>
+
+				<aside class="checkout-summary">
+					<div class="order-summary order-summary--checkout">
+						<h2 class="order-summary__title">Order Summary</h2>
+
+						<div class="checkout-summary__items" id="checkout-items"></div>
+
+						<div class="order-summary__divider"></div>
+
+						<div class="order-summary__row">
+							<span class="order-summary__label">Subtotal</span>
+							<span class="order-summary__value" id="checkout-subtotal">$0.00</span>
+						</div>
+
+						<div class="order-summary__row">
+							<span class="order-summary__label">Shipping</span>
+							<span class="order-summary__value order-summary__value--free">FREE</span>
+						</div>
+
+						<div class="order-summary__row">
+							<span class="order-summary__label">Tax (8%)</span>
+							<span class="order-summary__value" id="checkout-tax">$0.00</span>
+						</div>
+
+						<div class="order-summary__divider"></div>
+
+						<div class="order-summary__row order-summary__row--total">
+							<span class="order-summary__label">Total</span>
+							<span class="order-summary__value order-summary__value--total" id="checkout-total">$0.00</span>
+						</div>
+
+						<button class="order-summary__checkout" id="place-order" type="button">Place Order</button>
+
+						<p class="checkout-summary__legal">By placing this order, you agree to our Terms &amp; Conditions.</p>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</main>
+
+	<script src="js/checkout.js"></script>
+</body>
+</html>

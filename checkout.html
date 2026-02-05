@@ -71,44 +71,68 @@
 						<div class="checkout-card">
 							<h2 class="checkout-card__title">Contact Information</h2>
 							<div class="checkout-form-grid">
-								<label class="checkout-field">
-									<span>First Name *</span>
-									<input type="text" name="firstName" required placeholder="First name">
-								</label>
-								<label class="checkout-field">
-									<span>Last Name *</span>
-									<input type="text" name="lastName" required placeholder="Last name">
-								</label>
-								<label class="checkout-field checkout-field--full">
-									<span>Email Address *</span>
-									<input type="email" name="email" required placeholder="you@email.com">
-								</label>
-								<label class="checkout-field checkout-field--full">
-									<span>Phone Number *</span>
-									<input type="tel" name="phone" required placeholder="(555) 123-4567">
-								</label>
+								<div class="checkout-field">
+									<label>
+										<span>First Name *</span>
+										<input type="text" name="firstName" required placeholder="First name">
+									</label>
+									<span class="field-error" id="error-firstName"></span>
+								</div>
+								<div class="checkout-field">
+									<label>
+										<span>Last Name *</span>
+										<input type="text" name="lastName" required placeholder="Last name">
+									</label>
+									<span class="field-error" id="error-lastName"></span>
+								</div>
+								<div class="checkout-field checkout-field--full">
+									<label>
+										<span>Email Address *</span>
+										<input type="email" name="email" required placeholder="you@email.com">
+									</label>
+									<span class="field-error" id="error-email"></span>
+								</div>
+								<div class="checkout-field checkout-field--full">
+									<label>
+										<span>Phone Number *</span>
+										<input type="tel" name="phone" required placeholder="(555) 123-4567">
+									</label>
+									<span class="field-error" id="error-phone"></span>
+								</div>
 							</div>
 						</div>
 
 						<div class="checkout-card">
 							<h2 class="checkout-card__title">Shipping Address</h2>
 							<div class="checkout-form-grid">
-								<label class="checkout-field checkout-field--full">
-									<span>Street Address *</span>
-									<input type="text" name="street" required placeholder="Street address">
-								</label>
-								<label class="checkout-field">
-									<span>City *</span>
-									<input type="text" name="city" required placeholder="City">
-								</label>
-								<label class="checkout-field">
-									<span>State *</span>
-									<input type="text" name="state" required placeholder="State">
-								</label>
-								<label class="checkout-field checkout-field--full">
-									<span>ZIP Code *</span>
-									<input type="text" name="zip" required placeholder="ZIP code">
-								</label>
+								<div class="checkout-field checkout-field--full">
+									<label>
+										<span>Street Address *</span>
+										<input type="text" name="street" required placeholder="Street address">
+									</label>
+									<span class="field-error" id="error-street"></span>
+								</div>
+								<div class="checkout-field">
+									<label>
+										<span>City *</span>
+										<input type="text" name="city" required placeholder="City">
+									</label>
+									<span class="field-error" id="error-city"></span>
+								</div>
+								<div class="checkout-field">
+									<label>
+										<span>State *</span>
+										<input type="text" name="state" required placeholder="State">
+									</label>
+									<span class="field-error" id="error-state"></span>
+								</div>
+								<div class="checkout-field checkout-field--full">
+									<label>
+										<span>ZIP Code *</span>
+										<input type="text" name="zip" required placeholder="ZIP code">
+									</label>
+									<span class="field-error" id="error-zip"></span>
+								</div>
 							</div>
 						</div>
 
@@ -122,22 +146,34 @@
 								<span>This is a simulated payment. No actual charges will be made.</span>
 							</div>
 							<div class="checkout-form-grid">
-								<label class="checkout-field checkout-field--full">
-									<span>Card Number *</span>
-									<input type="text" name="cardNumber" required placeholder="1234 5678 9012 3456" inputmode="numeric">
-								</label>
-								<label class="checkout-field checkout-field--full">
-									<span>Cardholder Name *</span>
-									<input type="text" name="cardName" required placeholder="Name on card">
-								</label>
-								<label class="checkout-field">
-									<span>Expiry Date *</span>
-									<input type="text" name="expiry" required placeholder="MM/YY">
-								</label>
-								<label class="checkout-field">
-									<span>CVV *</span>
-									<input type="password" name="cvv" required placeholder="123" inputmode="numeric">
-								</label>
+								<div class="checkout-field checkout-field--full">
+									<label>
+										<span>Card Number *</span>
+										<input type="text" name="cardNumber" required placeholder="1234 5678 9012 3456" inputmode="numeric">
+									</label>
+									<span class="field-error" id="error-cardNumber"></span>
+								</div>
+								<div class="checkout-field checkout-field--full">
+									<label>
+										<span>Cardholder Name *</span>
+										<input type="text" name="cardName" required placeholder="Name on card">
+									</label>
+									<span class="field-error" id="error-cardName"></span>
+								</div>
+								<div class="checkout-field">
+									<label>
+										<span>Expiry Date *</span>
+										<input type="text" name="expiry" required placeholder="MM/YY">
+									</label>
+									<span class="field-error" id="error-expiry"></span>
+								</div>
+								<div class="checkout-field">
+									<label>
+										<span>CVV *</span>
+										<input type="password" name="cvv" required placeholder="123" inputmode="numeric">
+									</label>
+									<span class="field-error" id="error-cvv"></span>
+								</div>
 							</div>
 						</div>
 					</form>

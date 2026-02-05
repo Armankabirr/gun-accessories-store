@@ -2,6 +2,20 @@ class CheckoutPage {
 	constructor() {
 		this.items = this.loadCart();
 		this.taxRate = 0.08;
+		this.validationRules = {
+			firstName: { required: true, minLength: 2, message: 'Enter a valid first name' },
+			lastName: { required: true, minLength: 2, message: 'Enter a valid last name' },
+			email: { required: true, email: true, message: 'Enter a valid email address' },
+			phone: { required: true, phone: true, message: 'Enter a valid phone number (format: (555) 123-4567)' },
+			street: { required: true, minLength: 5, message: 'Enter a valid street address' },
+			city: { required: true, minLength: 2, message: 'Enter a valid city name' },
+			state: { required: true, minLength: 2, message: 'Enter a valid state' },
+			zip: { required: true, zip: true, message: 'Enter a valid ZIP code' },
+			cardNumber: { required: true, cardNumber: true, message: 'Enter a valid card number (16 digits)' },
+			cardName: { required: true, minLength: 3, message: 'Enter cardholder name' },
+			expiry: { required: true, expiry: true, message: 'Enter expiry date (MM/YY)' },
+			cvv: { required: true, cvv: true, message: 'Enter a valid CVV (3-4 digits)' }
+		};
 		this.init();
 	}
 
@@ -9,6 +23,7 @@ class CheckoutPage {
 		this.renderSummary();
 		this.updateCartBadge();
 		this.attachPlaceOrder();
+		this.attachFieldValidation();
 	}
 
 	loadCart() {
@@ -88,22 +103,145 @@ class CheckoutPage {
 		}
 	}
 
+	attachFieldValidation() {
+		const form = document.getElementById('checkout-form');
+		if (!form) return;
+
+		const inputs = form.querySelectorAll('input');
+		inputs.forEach(input => {
+			input.addEventListener('blur', () => this.validateField(input));
+			input.addEventListener('input', () => {
+				if (input.classList.contains('input-error')) {
+					this.validateField(input);
+				}
+			});
+		});
+	}
+
+	validateField(input) {
+		const fieldName = input.name;
+		const rules = this.validationRules[fieldName];
+		if (!rules) return true;
+
+		const value = input.value.trim();
+		let errorMessage = '';
+
+		if (rules.required && value === '') {
+			errorMessage = `${this.getFieldLabel(fieldName)} is required`;
+		} else if (value !== '' && rules.minLength && value.length < rules.minLength) {
+			errorMessage = rules.message;
+		} else if (value !== '' && rules.email && !this.isValidEmail(value)) {
+			errorMessage = rules.message;
+		} else if (value !== '' && rules.phone && !this.isValidPhone(value)) {
+			errorMessage = rules.message;
+		} else if (value !== '' && rules.zip && !this.isValidZip(value)) {
+			errorMessage = rules.message;
+		} else if (value !== '' && rules.cardNumber && !this.isValidCardNumber(value)) {
+			errorMessage = rules.message;
+		} else if (value !== '' && rules.expiry && !this.isValidExpiry(value)) {
+			errorMessage = rules.message;
+		} else if (value !== '' && rules.cvv && !this.isValidCVV(value)) {
+			errorMessage = rules.message;
+		}
+
+		this.setFieldError(input, errorMessage);
+		return errorMessage === '';
+	}
+
+	setFieldError(input, errorMessage) {
+		const errorEl = document.getElementById(`error-${input.name}`);
+		if (!errorEl) return;
+
+		if (errorMessage) {
+			input.classList.add('input-error');
+			errorEl.textContent = errorMessage;
+			errorEl.classList.add('field-error--show');
+		} else {
+			input.classList.remove('input-error');
+			errorEl.textContent = '';
+			errorEl.classList.remove('field-error--show');
+		}
+	}
+
+	getFieldLabel(fieldName) {
+		const labels = {
+			firstName: 'First Name',
+			lastName: 'Last Name',
+			email: 'Email Address',
+			phone: 'Phone Number',
+			street: 'Street Address',
+			city: 'City',
+			state: 'State',
+			zip: 'ZIP Code',
+			cardNumber: 'Card Number',
+			cardName: 'Cardholder Name',
+			expiry: 'Expiry Date',
+			cvv: 'CVV'
+		};
+		return labels[fieldName] || fieldName;
+	}
+
+	isValidEmail(email) {
+		return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+	}
+
+	isValidPhone(phone) {
+		return /^[\d\s\-\(\)]+$/.test(phone) && phone.replace(/\D/g, '').length === 10;
+	}
+
+	isValidZip(zip) {
+		return /^\d{5}(-\d{4})?$/.test(zip);
+	}
+
+	isValidCardNumber(cardNumber) {
+		const digits = cardNumber.replace(/\D/g, '');
+		return digits.length === 16;
+	}
+
+	isValidExpiry(expiry) {
+		return /^\d{2}\/\d{2}$/.test(expiry);
+	}
+
+	isValidCVV(cvv) {
+		const digits = cvv.replace(/\D/g, '');
+		return digits.length === 3 || digits.length === 4;
+	}
+
+	validateAllFields() {
+		const form = document.getElementById('checkout-form');
+		if (!form) return false;
+
+		const inputs = form.querySelectorAll('input');
+		let isValid = true;
+
+		inputs.forEach(input => {
+			if (!this.validateField(input)) {
+				isValid = false;
+			}
+		});
+
+		return isValid;
+	}
+
 	attachPlaceOrder() {
 		const placeOrderBtn = document.getElementById('place-order');
 		if (!placeOrderBtn) return;
 
 		placeOrderBtn.addEventListener('click', (e) => {
 			e.preventDefault();
-			const form = document.getElementById('checkout-form');
-			
-			if (!form.checkValidity()) {
-				alert('Please fill in all required fields.');
+
+			if (this.items.length === 0) {
+				alert('Your cart is empty. Add items to continue.');
 				return;
 			}
 
-			if (this.items.length === 0) return;
+			if (!this.validateAllFields()) {
+				alert('Please fix the errors in the form and try again.');
+				return;
+			}
 
 			// Get email from form
+			const form = document.getElementById('checkout-form');
 			const emailInput = form.querySelector('input[name="email"]');
 			const email = emailInput ? emailInput.value : 'customer@email.com';
 

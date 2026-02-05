@@ -1805,6 +1805,12 @@ button {
 	color: var(--muted);
 }
 
+.checkout-field label {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
 .checkout-field input {
 	background: rgba(255, 255, 255, 0.04);
 	border: 1px solid var(--border);
@@ -1813,12 +1819,43 @@ button {
 	color: var(--text);
 	font-size: 14px;
 	font-family: inherit;
+	transition: all 0.2s ease;
 }
 
 .checkout-field input:focus {
 	outline: none;
 	border-color: rgba(255, 107, 53, 0.55);
 	box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.15);
+}
+
+.checkout-field input.input-error {
+	border-color: #ef4444;
+	background: rgba(239, 68, 68, 0.08);
+	box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+.checkout-field input.input-error:focus {
+	border-color: #dc2626;
+	box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+}
+
+.field-error {
+	display: none;
+	font-size: 12px;
+	color: #ef4444;
+	font-weight: 500;
+	margin-top: 4px;
+	animation: shake 0.3s ease;
+}
+
+.field-error--show {
+	display: block;
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-4px); }
+	75% { transform: translateX(4px); }
 }
 
 .checkout-field--full {

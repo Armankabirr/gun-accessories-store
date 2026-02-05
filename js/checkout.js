@@ -92,15 +92,62 @@ class CheckoutPage {
 		const placeOrderBtn = document.getElementById('place-order');
 		if (!placeOrderBtn) return;
 
-		placeOrderBtn.addEventListener('click', () => {
+		placeOrderBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			const form = document.getElementById('checkout-form');
+			
+			if (!form.checkValidity()) {
+				alert('Please fill in all required fields.');
+				return;
+			}
+
 			if (this.items.length === 0) return;
+
+			// Get email from form
+			const emailInput = form.querySelector('input[name="email"]');
+			const email = emailInput ? emailInput.value : 'customer@email.com';
+
+			// Generate order number
+			const orderNumber = this.generateOrderNumber();
+
+			// Show confirmation modal
+			this.showConfirmation(email, orderNumber);
+
+			// Clear cart
 			localStorage.removeItem('cart');
 			this.items = [];
 			this.renderSummary();
 			this.updateCartBadge();
-			alert('Order placed! This is a demo checkout with no actual charges.');
 		});
 	}
+
+	generateOrderNumber() {
+		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		let orderNumber = '#';
+		for (let i = 0; i < 8; i++) {
+			orderNumber += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		return orderNumber;
+	}
+
+	showConfirmation(email, orderNumber) {
+		const modal = document.getElementById('confirmation-modal');
+		const emailEl = document.getElementById('confirmation-email');
+		const orderIdEl = document.getElementById('confirmation-order-id');
+
+		if (!modal || !emailEl || !orderIdEl) return;
+
+		// Update confirmation details
+		emailEl.textContent = email;
+		orderIdEl.textContent = orderNumber;
+
+		// Show modal with animation
+		modal.classList.add('confirmation-modal--show');
+
+		// Disable scrolling
+		document.body.style.overflow = 'hidden';
+	}
+
 }
 
 new CheckoutPage();

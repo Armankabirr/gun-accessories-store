@@ -182,6 +182,34 @@
 		</div>
 	</main>
 
+	<!-- Order Confirmation Modal -->
+	<div class="confirmation-modal" id="confirmation-modal">
+		<div class="confirmation-container">
+			<div class="confirmation-checkmark">
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="12" cy="12" r="10" fill="#10b981"/>
+					<path d="M8 12l3 3 5-5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+			
+			<h1 class="confirmation-title">Order Placed Successfully!</h1>
+			
+			<p class="confirmation-message">Thank you for your order.</p>
+			
+			<div class="confirmation-email">
+				<span class="confirmation-email-label">A confirmation email has been sent to</span>
+				<span class="confirmation-email-address" id="confirmation-email"></span>
+			</div>
+			
+			<div class="confirmation-order-number">
+				<div class="confirmation-order-label">Order Number</div>
+				<div class="confirmation-order-id" id="confirmation-order-id">#B9QW4REOK</div>
+			</div>
+			
+			<a href="index.html" class="confirmation-button">Continue Shopping</a>
+		</div>
+	</div>
+
 	<script src="js/checkout.js"></script>
 </body>
 </html>

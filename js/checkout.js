@@ -6,7 +6,7 @@ class CheckoutPage {
 			firstName: { required: true, minLength: 2, message: 'Enter a valid first name' },
 			lastName: { required: true, minLength: 2, message: 'Enter a valid last name' },
 			email: { required: true, email: true, message: 'Enter a valid email address' },
-			phone: { required: true, phone: true, message: 'Enter a valid phone number (format: (555) 123-4567)' },
+			phone: { required: true, phone: true, message: 'Enter a valid Bangladeshi phone number (01X XXX XXXX or +880 9XX XXX XXXX)' },
 			street: { required: true, minLength: 5, message: 'Enter a valid street address' },
 			city: { required: true, minLength: 2, message: 'Enter a valid city name' },
 			state: { required: true, minLength: 2, message: 'Enter a valid state' },
@@ -186,7 +186,37 @@ class CheckoutPage {
 	}
 
 	isValidPhone(phone) {
-		return /^[\d\s\-\(\)]+$/.test(phone) && phone.replace(/\D/g, '').length === 10;
+		// Bangladeshi phone number validation
+		// Formats supported:
+		// - 01X XXXX XXXX (local format, 11 digits)
+		// - +880 9XX XXX XXXX (international format)
+		// - +88 01X XXXX XXXX (alternative international format)
+		// - 00880 1X XXXX XXXX (alternative format)
+		
+		const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+		
+		// Check if it matches Bangladeshi phone pattern
+		// Local format: 01[0-9] followed by 8 digits
+		if (/^01[0-9]\d{8}$/.test(cleanPhone)) {
+			return true;
+		}
+		
+		// International format with +880: +880 followed by 9XX XXX XXXX
+		if (/^\+8809\d{9}$/.test(cleanPhone)) {
+			return true;
+		}
+		
+		// Alternative international format: +88 followed by 01X XXXX XXXX
+		if (/^\+88011\d{8}$|^\+88021\d{8}$|^\+88031\d{8}$|^\+88041\d{8}$/.test(cleanPhone)) {
+			return true;
+		}
+		
+		// Alternative format: 00880 followed by 1X XXXX XXXX
+		if (/^008801[0-9]\d{8}$/.test(cleanPhone)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	isValidZip(zip) {
